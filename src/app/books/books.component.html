@@ -1,0 +1,49 @@
+<app-search-bar [options]='options' [title]='title' (search)='onSearch($event)' #sbar></app-search-bar>
+
+<div class="book-container mat-elevation-z4" flex layout="row">
+  <mat-table [dataSource]='dataSource'>
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="id" class='short'>
+      <mat-header-cell *matHeaderCellDef class='short'> ID </mat-header-cell>
+      <mat-cell *matCellDef="let book" class='short'> {{ book.id }} </mat-cell>
+    </ng-container>
+
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+      <mat-cell *matCellDef="let book"> {{ book.title }} </mat-cell>
+    </ng-container>
+
+    <!-- Author Column -->
+    <ng-container matColumnDef="author">
+      <mat-header-cell *matHeaderCellDef> Author </mat-header-cell>
+      <mat-cell *matCellDef="let book"> {{ book.author }} </mat-cell>
+    </ng-container>
+
+    <!-- Year Published Column -->
+    <ng-container matColumnDef="yearPublished">
+      <mat-header-cell *matHeaderCellDef> Year Published </mat-header-cell>
+      <mat-cell *matCellDef="let book"> {{ book.yearPublished }} </mat-cell>
+    </ng-container>
+
+    <!-- Price Column -->
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+      <mat-cell *matCellDef="let book"> {{ book.price }} </mat-cell>
+    </ng-container>
+
+    <!-- Rating Column -->
+    <ng-container matColumnDef="rating">
+      <mat-header-cell *matHeaderCellDef> Rating </mat-header-cell>
+      <mat-cell *matCellDef="let book"><app-stars [rating]='book.rating'></app-stars></mat-cell>
+      <!-- <mat-cell *matCellDef="let book"> {{ book.rating }} </mat-cell> -->
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let book; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
